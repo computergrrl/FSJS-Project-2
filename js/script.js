@@ -46,14 +46,14 @@ const appendPageLinks = (list) => {
     pageDiv.className = "pagination";
 
     //create a ul
-    const ul = pageDiv.createElement('ul');
+    const ul = document.createElement('ul');
 
     //create an li
-    const listItem = ul.createElement('li');
+    const listItem = document.createElement('li');
 
     /*create temporary link tag for li (this will not be how I do this
     and is just for the sake of testing this to see if it works)*/
-    listItem.textContent = '<a href="#">Click me</a>';
+    listItem.innerHTML = '<a href="#">Click me</a>';
 
     //append the ul to pageDiv
     pageDiv.appendChild(ul);
