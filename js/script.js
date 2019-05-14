@@ -17,8 +17,8 @@ FSJS project 2 - List Filter and Pagination
    scoped to that function.
 ***/
 
-const li = document.getElementsByClassName('student-item cf');
-const div = document.querySelectorAll('.page');
+const allStudents = document.getElementsByClassName('student-item cf');
+const div = document.querySelector('.page');
 
 
 
@@ -37,13 +37,9 @@ const div = document.querySelectorAll('.page');
 
 //}
 //div[i] = page[i]
-var pagesNeeded = Math.ceil(li.length/10);
-console.log(pagesNeeded);
+const pagesNeeded = Math.ceil(allStudents.length/10);
+//console.log(pagesNeeded);
 
-for (let i = 0; i < pagesNeeded; i += 1) {
-
-
-}
 
 const appendPageLinks = (list) => {
 
@@ -54,28 +50,26 @@ const appendPageLinks = (list) => {
     const ul = document.createElement('ul');
 
     //create an li
-    const listItem = document.createElement('li');
 
-    /*create temporary link tag for li (this will not be how I do this
-    and is just for the sake of testing this to see if it works)*/
-    listItem.innerHTML = '<a href="#">Click me</a>';
 
-    //append the ul to pageDiv
+        for (let i = 1; i <= pagesNeeded; i += 1) {
+
+        const listItem = document.createElement('li');
+        listItem.innerHTML = '<a href="#">' + i + '</a>';
+        ul.appendChild(listItem);
+
+        }
+
     pageDiv.appendChild(ul);
 
-    //create a loop that makes a button for every 10 names in the list
-          // for (let i=0; i < list.length; i += 10) {
-          //
-          //     ul.appendChild(listItem);
-          //
-          // }
+
 
     return pageDiv;
 
 }
 
 
-div.appendChild(appendPageLinks(li));
+div.appendChild(appendPageLinks(allStudents));
 
 
 /***
