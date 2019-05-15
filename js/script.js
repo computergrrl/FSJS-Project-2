@@ -28,7 +28,7 @@ const showPage = (list, page) => {
     console.log(min);
     console.log(max);
 
-    for (let i=0; i <= list.length; i++) {
+    for (let i=0; i < list.length; i++) {
 
           if (i >= min && i <= max) {
               list[i].style.display = "block";
