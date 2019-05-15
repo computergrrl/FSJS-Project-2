@@ -3,42 +3,47 @@ Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
-
-
-/***
-   Add your global variables that store the DOM elements you will
-   need to reference and/or manipulate.
-
-   But be mindful of which variables should be global and which
-   should be locally scoped to one of the two main functions you're
-   going to create. A good general rule of thumb is if the variable
-   will only be used inside of a function, then it can be locally
-   scoped to that function.
-***/
-
+//global variables
 const allStudents = document.getElementsByClassName('student-item cf');
 const div = document.querySelector('.page');
+let pagesNeeded = Math.ceil(allStudents.length/10);
+const studentsPerPage = 10;
+const pageButtons = document.getElementsByTagName('a');
+let page = 1;
 
 
 
+const showPage = (list, page) => {
+//students 0-9 on page 1
+//students 10-19 on page 2
+//students 20 -29 page 3
+//students 30 - 39 page 4
+//students 40 - 49 page 5
+//students 50 - 53 page 6
+  let min = '';
+    // set a min number to figure out the lowest index number to show
+    if (page ===1) {
+       min = (page -1);
+    }  else {
+        min = (page * 10);
+      }
+    // set a max number to be the highest index number to show
+    let max = min + 9;
 
-//const showPage = () => {
+    console.log(min);
+    console.log(max);
 
-    // for (let i=0; i <= li.length; i++) {
-    //
-    //       if (i == 3) {
-    //           li[i].style.display = "block";
-    //
-    //       }   else {
-    //       li[i].style.display = "none";
-    //       }
-    // }
+    for (let i=0; i <= list.length; i++) {
 
-//}
-//div[i] = page[i]
-const pagesNeeded = Math.ceil(allStudents.length/10);
-//console.log(pagesNeeded);
+          if (i >= min && i <= max) {
+              list[i].style.display = "block";
+
+          }   else {
+          list[i].style.display = "none";
+          }
+    }
+
+}
 
 
 const appendPageLinks = (list) => {
@@ -49,13 +54,11 @@ const appendPageLinks = (list) => {
     //create a ul
     const ul = document.createElement('ul');
 
-    //create an li
-
 
         for (let i = 1; i <= pagesNeeded; i += 1) {
 
         const listItem = document.createElement('li');
-        listItem.innerHTML = '<a href="#">' + i + '</a>';
+        listItem.innerHTML = `<a href="#">${i}</a>`;
         ul.appendChild(listItem);
 
         }
@@ -70,6 +73,8 @@ const appendPageLinks = (list) => {
 
 
 div.appendChild(appendPageLinks(allStudents));
+
+showPage(allStudents, 3);
 
 
 /***
