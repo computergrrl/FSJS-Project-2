@@ -14,12 +14,7 @@ let page = 1;
 
 
 const showPage = (list, page) => {
-//students 0-9 on page 1
-//students 10-19 on page 2
-//students 20 -29 page 3
-//students 30 - 39 page 4
-//students 40 - 49 page 5
-//students 50 - 53 page 6
+
   let min = '';
     // set a min number to figure out the lowest index number to show
     if (page ===1) {
