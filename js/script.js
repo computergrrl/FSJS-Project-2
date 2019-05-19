@@ -25,8 +25,6 @@ const showPage = (list, page) => {
     // set a max number to be the highest index number to show
     let max = min + 9;
 
-    console.log(min);
-    console.log(max);
 
     for (let i=0; i < list.length; i++) {
 
@@ -40,7 +38,7 @@ const showPage = (list, page) => {
 
 }
 
-
+//function to dynamically append the page links
 const appendPageLinks = (list) => {
 
     const pageDiv = document.createElement('div');
@@ -49,40 +47,41 @@ const appendPageLinks = (list) => {
     //create a ul
     const ul = document.createElement('ul');
 
-
+        /*this loop is to create an "li" tag and an "a" tag for every page needed */
         for (let i = 1; i <= pagesNeeded; i += 1) {
 
+        //create the li and a tags
         const listItem = document.createElement('li');
-        listItem.innerHTML = `<a href="#">${i}</a>`;
+        listItem.innerHTML = `<a href="#" class="active">${i}</a>`;
+
+
+
+
+
+        //append each set of li & a tags to the ul
         ul.appendChild(listItem);
 
         }
-
+    //append the ul to the newly created div
     pageDiv.appendChild(ul);
 
 
-
+    //return the whole div
     return pageDiv;
 
 }
 
 
+
+
+//use appendChild to call the appendPageLinks function
 div.appendChild(appendPageLinks(allStudents));
 
-showPage(allStudents, 3);
-
-
-/***
-   Create the `showPage` function to hide all of the items in the
-   list except for the ten you want to show.
-
-   Pro Tips:
-     - Keep in mind that with a list of 54 students, the last page
-       will only display four.
-     - Remember that the first student has an index of 0.
-     - Remember that a function `parameter` goes in the parens when
-       you initially define the function, and it acts as a variable
-       or a placeholder to represent the actual function `argument`
-       that will be passed into the parens later when you call or
-       "invoke" the function
-***/
+    for (i =0; i < (pagesNeeded -1); i++) {
+      pageButtons[i].addEventListener('click' , () => {
+        showPage(allStudents, i);
+      });
+}
+ // pageButtons[2].addEventListener('click' , () => {
+ //   showPage(allStudents, 3);
+ // });
