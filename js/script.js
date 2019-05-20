@@ -6,7 +6,6 @@ FSJS project 2 - List Filter and Pagination
 //global variables
 const allStudents = document.getElementsByClassName('student-item cf');
 const div = document.querySelector('.page');
-let pagesNeeded = Math.ceil(allStudents.length/10);
 const studentsPerPage = 10;
 const pageButtons = document.getElementsByTagName('a');
 let page = 1;
@@ -15,31 +14,28 @@ let page = 1;
 
 const showPage = (list, page) => {
 
-  let min = '';
-    // set a min number to figure out the lowest index number to show
-    if (page ===1) {
-       min = (page -1);
-    }  else {
-        min = (page * 10);
-      }
-    // set a max number to be the highest index number to show
-    let max = min + 9;
+  //calculate what the minimum index number is
+  let  min = ((page -1) * studentsPerPage);
+  //calculate what the maximum index number is
+  let max = min + (studentsPerPage -1);
 
-
+    //loop through the entire list
     for (let i=0; i < list.length; i++) {
-
-          if (i >= min && i <= max) {
-              list[i].style.display = "block";
-
-          }   else {
-          list[i].style.display = "none";
-          }
+        // if index value is between min and max (inclusive) then show
+        if (i >= min && i <= max) {
+            list[i].style.display = "block";
+          //hide index values that don't fall into above range
+        }   else {
+        list[i].style.display = "none";
+        }
     }
 
 }
 
 //function to dynamically append the page links
 const appendPageLinks = (list) => {
+
+    const pagesNeeded = Math.ceil(allStudents.length/studentsPerPage);
 
     const pageDiv = document.createElement('div');
     pageDiv.className = "pagination";
@@ -52,7 +48,12 @@ const appendPageLinks = (list) => {
 
         //create the li and a tags
         const listItem = document.createElement('li');
-        listItem.innerHTML = `<a href="#" class="active">${i}</a>`;
+        //use innerHTML to add a tags to listItem
+        listItem.innerHTML = `<a href="#">${i}</a>`;
+        //then add an eventListener to each listItem as it's created
+        listItem.addEventListener('click' , () => {
+            showPage(list, i);
+        });
 
 
 
@@ -77,11 +78,4 @@ const appendPageLinks = (list) => {
 //use appendChild to call the appendPageLinks function
 div.appendChild(appendPageLinks(allStudents));
 
-    for (i =0; i < (pagesNeeded -1); i++) {
-      pageButtons[i].addEventListener('click' , () => {
-        showPage(allStudents, i);
-      });
-}
- // pageButtons[2].addEventListener('click' , () => {
- //   showPage(allStudents, 3);
- // });
+showPage(allStudents, 1);
