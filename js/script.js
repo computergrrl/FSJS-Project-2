@@ -50,8 +50,12 @@ const appendPageLinks = (list) => {
         //use innerHTML to add a tags to listItem
         listItem.innerHTML = `<a href="#">${i}</a>`;
         //then add an eventListener to each listItem as it's created
-        listItem.addEventListener('click' , () => {
+        listItem.addEventListener('click' , (event) => {
+            removeActiveClass();
             showPage(list, i);
+            //set button class name to "active"
+            event.target.className = 'active';
+
         });
 
 
@@ -66,6 +70,15 @@ const appendPageLinks = (list) => {
     //return the whole div
     return pageDiv;
 
+}
+
+function removeActiveClass() {
+    let paginationLinks = document.querySelectorAll(".pagination li a");
+
+    for(let link of paginationLinks) {
+        link.classList.remove("active");
+      
+    }
 }
 
 //use appendChild to call the appendPageLinks function
