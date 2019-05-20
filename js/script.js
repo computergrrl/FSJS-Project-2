@@ -11,7 +11,6 @@ const pageButtons = document.getElementsByTagName('a');
 let page = 1;
 
 
-
 const showPage = (list, page) => {
 
   //calculate what the minimum index number is
@@ -56,9 +55,6 @@ const appendPageLinks = (list) => {
         });
 
 
-
-
-
         //append each set of li & a tags to the ul
         ul.appendChild(listItem);
 
@@ -72,10 +68,7 @@ const appendPageLinks = (list) => {
 
 }
 
-
-
-
 //use appendChild to call the appendPageLinks function
 div.appendChild(appendPageLinks(allStudents));
-
+//by default only show the first page on initial page load
 showPage(allStudents, 1);
