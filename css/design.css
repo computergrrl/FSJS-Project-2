@@ -99,7 +99,7 @@ body{
   margin: 40px 0 0 0;
   text-align: center;
 }
- 
+
   .pagination li{
     display: inline;
   }
@@ -117,3 +117,13 @@ body{
       background-color: #4ba6c3;
       color: #fff;
     }
+
+ #searchBox {
+  background: absolute;
+  background-position: 100px;
+  width: 15%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px inset #808080;
+  margin-bottom: 12px;
+}

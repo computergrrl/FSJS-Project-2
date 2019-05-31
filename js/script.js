@@ -42,7 +42,7 @@ const appendPageLinks = (list) => {
     //create a ul
     const ul = document.createElement('ul');
 
-        /*this loop is to create an "li" tag and an "a" tag for every page needed */
+        /* this loop is to create an "li" tag and an "a" tag for every page needed */
         for (let i = 1; i <= pagesNeeded; i += 1) {
 
         //create the li and a tags
@@ -51,7 +51,10 @@ const appendPageLinks = (list) => {
         listItem.innerHTML = `<a href="#">${i}</a>`;
         //then add an eventListener to each listItem as it's created
         listItem.addEventListener('click' , (event) => {
+            //call function to remove the active class from all the buttons
             removeActiveClass();
+
+            //attach showPage function to each button
             showPage(list, i);
             //set button class name to "active"
             event.target.className = 'active';
@@ -72,13 +75,36 @@ const appendPageLinks = (list) => {
 
 }
 
+
 function removeActiveClass() {
     let paginationLinks = document.querySelectorAll(".pagination li a");
 
     for(let link of paginationLinks) {
         link.classList.remove("active");
-      
+
     }
+}
+
+function searchStudents() {
+      // Declare variables
+      const input = document.getElementById('searchBox');
+       ul = document.querySelector('.student-list');
+       li = ul.getElementsByTagName('li');
+
+
+/* The next 5 lines of code I borrowed from
+https://www.w3schools.com/howto/howto_js_filter_lists.asp
+*/
+      let filter = input.value.toUpperCase();
+      for (i = 0; i < li.length; i++) {
+      span = li[i].getElementsByTagName("span")[0];
+      txtValue = span.textContent || span.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+  }
 }
 
 //use appendChild to call the appendPageLinks function
