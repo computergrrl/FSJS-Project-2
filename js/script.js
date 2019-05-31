@@ -85,6 +85,14 @@ function removeActiveClass() {
     }
 }
 
+function createSearchBox() {
+    const body = document.getElementsByTagName('body');
+    newDiv = document.createElement('div');
+    newDiv.innerHTML = '<input type="text" id="searchBox" onkeyup="searchStudents()" placeholder="Search for students...">';
+    body[0].appendChild(newDiv);
+
+}
+
 function searchStudents() {
       // Declare variables
       const input = document.getElementById('searchBox');
@@ -107,6 +115,7 @@ https://www.w3schools.com/howto/howto_js_filter_lists.asp
   }
 }
 
+createSearchBox();
 //use appendChild to call the appendPageLinks function
 div.appendChild(appendPageLinks(allStudents));
 //by default only show the first page on initial page load
